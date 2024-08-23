@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生簽到/簽退系統</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 載入指示器 -->
+    <div id="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <p>載入中...</p>
+    </div>
+
+    <!-- 登入表單 -->
+    <div id="login-form" class="auth-form">
+        <h2>登入</h2>
+        <input type="text" id="username" placeholder="用戶名">
+        <input type="password" id="password" placeholder="密碼">
+        <button id="login-btn">登入</button>
+        <p>還沒有帳號？ <a href="#" id="show-register">註冊</a></p>
+    </div>
+
+    <!-- 註冊表單 -->
+    <div id="register-form" class="auth-form" style="display: none;">
+        <h2>註冊</h2>
+        <input type="text" id="reg-username" placeholder="用戶名">
+        <input type="password" id="reg-password" placeholder="密碼">
+        <button id="register-btn">註冊</button>
+        <p>已有帳號？ <a href="#" id="show-login">登入</a></p>
+    </div>
+
+    <!-- 學生簽到/簽退系統 -->
+    <div id="app" style="display: none;">
+        <h1>學生簽到/簽退系統</h1>
+        <div id="check-in-out">
+            <input type="text" id="student-id" placeholder="請輸入學號">
+            <button id="check-in-btn">簽到</button>
+            <button id="check-out-btn">簽退</button>
+        </div>
+        <div id="status-message"></div>
+        <div id="records">
+            <h2>最近記錄</h2>
+            <ul id="record-list"></ul>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+    <script>
+        // 切換顯示註冊和登入表單
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+        });
+
+        document.getElementById('show-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        });
+
+        // 模擬登入成功後顯示應用內容
+        document.getElementById('login-btn').addEventListener('click', function() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+        });
+
+        // 模擬註冊成功後顯示登入表單
+        document.getElementById('register-btn').addEventListener('click', function() {
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

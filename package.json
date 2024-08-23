@@ -1,0 +1,64 @@
+{
+  "name": "student-checkin-app",
+  "version": "1.0.0",
+  "description": "學生簽到/簽退系統",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "postinstall": "electron-builder install-app-deps",
+    "rebuild": "electron-rebuild"
+  },
+  "build": {
+    "appId": "com.yourcompany.studentcheckin",
+    "productName": "學生簽到/簽退系統",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Education"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "glob": "^11.0.0",
+    "inflight": "^1.0.6",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.6.0",
+    "electron": "^32.0.1",
+    "electron-builder": "^24.13.3",
+    "electron-rebuild": "^3.2.9"
+  }
+}

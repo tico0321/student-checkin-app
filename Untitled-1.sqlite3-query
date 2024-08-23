@@ -1,0 +1,17 @@
+-- database: ./attendance.db
+CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,  -- 學生表的主鍵，自動遞增
+    student_id TEXT UNIQUE NOT NULL,       -- 學生編號，唯一且不可為空
+    name TEXT NOT NULL,                    -- 學生姓名，不可為空
+    class TEXT NOT NULL,                   -- 學生班級，不可為空
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP  -- 創建時間，默認為當前時間
+);
+
+CREATE TABLE IF NOT EXISTS check_records (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,  -- 簽到記錄表的主鍵，自動遞增
+    student_id TEXT NOT NULL,              -- 學生編號，不可為空，外鍵參考 students 表
+    check_type TEXT NOT NULL,              -- 簽到類型，不可為空（如：簽到或簽退）
+    check_time DATETIME DEFAULT CURRENT_TIMESTAMP,  -- 簽到時間，默認為當前時間
+    sync_status TEXT DEFAULT 'pending',    -- 同步狀態，默認為 'pending'
+    FOREIGN KEY (student_id) REFERENCES students(student_id)  -- 外鍵約束，參考 students 表的 student_id
+);
